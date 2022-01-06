@@ -11,6 +11,20 @@ class App extends Component {
     text: sampleText
   }
 
+  componentDidMount (){
+    const text = localStorage.getItem('text');
+    if (!text) {
+      this.setState({text : sampleText})
+      return;
+    }
+    this.setState({text})
+  }
+
+  componentDidUpdate (){
+    const text = this.state.text;
+    localStorage.setItem('text', text);
+  }
+
   handleChange = event => {
     const text = event.target.value
     this.setState({text})
